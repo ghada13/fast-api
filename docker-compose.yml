@@ -12,7 +12,9 @@ services:
       - "5432:5432"
 
   api:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: always
     depends_on:
       - db
@@ -24,8 +26,6 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     restart: always
-    env_file:
-      - .env
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: admin
@@ -36,3 +36,4 @@ services:
 
 volumes:
   postgres_data:
+
